@@ -1,0 +1,83 @@
+// check out the workshop tab to get started
+// welcome to blot!
+
+// check out this guide to learn how to program in blot
+// https://blot.hackclub.com/editor?guide=start
+
+const width = 125;
+const height = 125;
+
+setDocDimensions(width, height);
+
+// store final lines here
+const finalLines = [];
+
+// function to create a simple circle
+function createCircle(cx, cy, radius, numPoints) {
+  const circle = [];
+  for (let i = 0; i < numPoints; i++) {
+    const angle = (i / numPoints) * 2 * Math.PI;
+    const x = cx + radius * Math.cos(angle);
+    const y = cy + radius * Math.sin(angle);
+    circle.push([x, y]);
+  }
+  circle.push(circle[0]); // Close the circle
+  return circle;
+}
+
+// function to create a simple oval
+function createOval(cx, cy, rx, ry, numPoints) {
+  const oval = [];
+  for (let i = 0; i < numPoints; i++) {
+    const angle = (i / numPoints) * 2 * Math.PI;
+    const x = cx + rx * Math.cos(angle);
+    const y = cy + ry * Math.sin(angle);
+    oval.push([x, y]);
+  }
+  oval.push(oval[0]); // Close the oval
+  return oval;
+}
+
+// Shrek's head
+const head = createOval(width / 2, height / 2, 30, 40, 100);
+finalLines.push(head);
+
+// Shrek's ears
+const leftEar = createOval(width / 2 - 35, height / 2 - 20, 5, 15, 20);
+const rightEar = createOval(width / 2 + 35, height / 2 - 20, 5, 15, 20);
+finalLines.push(leftEar);
+finalLines.push(rightEar);
+
+// Shrek's eyes
+const leftEye = createCircle(width / 2 - 10, height / 2 - 10, 5, 20);
+const rightEye = createCircle(width / 2 + 10, height / 2 - 10, 5, 20);
+finalLines.push(leftEye);
+finalLines.push(rightEye);
+
+// Shrek's pupils
+const leftPupil = createCircle(width / 2 - 10, height / 2 - 10, 2, 10);
+const rightPupil = createCircle(width / 2 + 10, height / 2 - 10, 2, 10);
+finalLines.push(leftPupil);
+finalLines.push(rightPupil);
+
+// Shrek's nose
+const nose = [
+  [width / 2 - 5, height / 2 + 5],
+  [width / 2, height / 2 + 15],
+  [width / 2 + 5, height / 2 + 5],
+  [width / 2 - 5, height / 2 + 5]
+];
+finalLines.push(nose);
+
+// Shrek's mouth
+const mouth = [
+  [width / 2 - 15, height / 2 + 20],
+  [width / 2 - 10, height / 2 + 25],
+  [width / 2 + 10, height / 2 + 25],
+  [width / 2 + 15, height / 2 + 20]
+];
+finalLines.push(mouth);
+
+// draw it
+drawLines(finalLines);
+ 
